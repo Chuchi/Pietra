@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:padding="5dp"
+    android:background="#97dfe3">
+
+    <TextView
+        android:id="@+id/TV2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="top|left|center_horizontal"
+        android:layout_weight="1"
+        android:text="Petra"
+        android:textColor="#0f2501"
+        android:textStyle="normal|bold|italic"
+        android:textSize="40sp"
+        />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp">
+
+        <EditText
+            android:id="@+id/ET1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#163ee2"
+            android:ems="10"
+            android:textSize="20sp"
+            android:hint="Trazador"
+            android:textColorHint="#d06c7083"
+            android:inputType="text"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/Cortina3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp">
+
+
+        <EditText
+            android:id="@+id/ET2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#163ee2"
+            android:textSize="20sp"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:textColorHint="#d06c7083"
+            android:visibility="invisible" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/BTN1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2.1 "
+        android:text="OK"
+        android:textSize="30sp"
+        android:textStyle="normal|bold|italic"
+        android:background="@drawable/rounded_corner"
+        android:textColor="#04155d"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:visibility="invisible"
+        />
+
+
+</LinearLayout>

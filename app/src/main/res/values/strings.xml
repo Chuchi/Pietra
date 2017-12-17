@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Piedra</string>
+    <string name="PonTracker">Favor, Introducir el Trazador</string>
+    <string name="PonPass">Favor, Introducir el Trazador</string>
+    <string name="PropiedadTracker">IDtrack</string>
+    <string name="PropiedadLinea">IDcombo</string>
+    <string name="PropiedadVersion">Version</string>
+    <string name="PropiedadLatitudHito1">LatitudHito1</string>
+    <string name="PropiedadLonguitudHito1">LonguitudHito1</string>
+    <string name="PropiedadLatitudHito2">LatitudHito2</string>
+    <string name="PropiedadLonguitudHito2">LonguitudHito2</string>
+    <string name="PropiedadLatitudHito3">LatitudHito3</string>
+    <string name="PropiedadLonguitudHito3">LonguitudHito3</string>
+    <string name="PropiedadRadioEnMetrosHito1">RadioEnMetrosHito1</string>
+    <string name="PropiedadRadioEnMetrosHito2">RadioEnMetrosHito2</string>
+    <string name="PropiedadRadioEnMetrosHito3">RadioEnMetrosHito3</string>
+    <string name="PropiedadNombreUbicacion1">NombreUbicacion1</string>
+    <string name="PropiedadNombreUbicacion2">NombreUbicacion2</string>
+    <string name="PropiedadNombreUbicacion3">NombreUbicacion3</string>
+
+    <string name="PropiedadLatitudInicioVuelta">LatitudInicioVuelta</string>
+    <string name="PropiedadLonguitudInicioVuelta">LonguitudInicioVuelta</string>
+    <string name="PropiedadLatitudFinVuelta">LatitudFinVuelta</string>
+    <string name="PropiedadLonguitudFinVuelta">LonguitudFinVuelta</string>
+
+    <string name="PropiedadRadioEnMetrosRelojes">RadioEnMetrosRelojes</string>
+    <string name="PropiedadLatitudReloj1">LatitudReloj1</string>
+    <string name="PropiedadLonguitudReloj1">LonguitudReloj1</string>
+    <string name="PropiedadLatitudReloj2">LatitudReloj2</string>
+    <string name="PropiedadLonguitudReloj2">LonguitudReloj2</string>
+    <string name="PropiedadLatitudReloj3">LatitudReloj3</string>
+    <string name="PropiedadLonguitudReloj3">LonguitudReloj3</string>
+    <string name="PropiedadLatitudReloj4">LatitudReloj4</string>
+    <string name="PropiedadLonguitudReloj4">LonguitudReloj4</string>
+    <string name="PropiedadLatitudReloj5">LatitudReloj5</string>
+    <string name="PropiedadLonguitudReloj5">LonguitudReloj5</string>
+    <string name="PropiedadLatitudReloj6">LatitudReloj6</string>
+    <string name="PropiedadLonguitudReloj6">LonguitudReloj6</string>
+    <string name="PropiedadLatitudReloj7">LatitudReloj7</string>
+    <string name="PropiedadLonguitudReloj7">LonguitudReloj7</string>
+    <string name="PropiedadLatitudReloj8">LatitudReloj8</string>
+    <string name="PropiedadLonguitudReloj8">LonguitudReloj8</string>
+    <string name="PropiedadLatitudReloj9">LatitudReloj9</string>
+    <string name="PropiedadLonguitudReloj9">LonguitudReloj9</string>
+    <string name="PropiedadLatitudReloj10">LatitudReloj10</string>
+    <string name="PropiedadLonguitudReloj10">LonguitudReloj10</string>
+    <string name="PropiedadREFRESH">REFRESH</string>
+    <string name="PropiedadTiempoDescansoDeNotificacionesHito1">TiemposDescansoDeNotificacionesHito1</string>
+    <string name="PropiedadTiempoDescansoDeNotificacionesHito2">TiemposDescansoDeNotificacionesHito2</string>
+    <string name="PropiedadTiempoDescansoDeNotificacionesHito3">TiemposDescansoDeNotificacionesHito3</string>
+
+    <string name="myCoolButton">botine</string>
+    <string name="myNiceButton">carioca</string>
+    <string name="myNiceButton2">carioco</string>
+
+    <string name="PropiedadColorin">Colorin</string>
+    <string name="PropiedadURL">PropiedadURL</string>
+    <string name="PropiedadNAMESPACE">PropiedadNAMESPACE</string>
+
+    <string name="PropiedadFrecuenciaActualizacionEnLocal">FrecuenciaEnLocal</string>
+    <string name="PropiedadFrecuenciaSubirDatosANube">FrecuenciaSubirDatosANube</string>
+    <string name="PropiedadFrecuenciaScaneo">FrecuenciaScaneo</string>
+    <string name="PropiedadFrecuenciaRecibirOrdenes">FrecuenciaRecibirOrdenes</string>
+    <string name="PropiedadFrecuenciaGuardia">FrecuenciaGuardia</string>
+
+
+    <string name="titulin">Petra</string>
+</resources>
+
