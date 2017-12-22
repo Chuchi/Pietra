@@ -14,6 +14,7 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import org.ksoap2.SoapEnvelope;
@@ -37,7 +38,9 @@ public class Actualiza extends Service {
     Boolean NotificacionLlegadaHito1Enviada = true;//Indicador de que la notificacion1 de llegada ha sido enviada
     Boolean NotificacionLlegadaHito2Enviada = true;//Indicador de que la notificacion2 de llegada ha sido enviada
     Boolean NotificacionLlegadaHito3Enviada = true;//Indicador de que la notificacion2 de llegada ha sido enviada
-
+    long TiempoReposo=System.currentTimeMillis();
+    int BanderinReposo1=0;
+    int BanderinReposo2=0;
 
     Timer tempora1 ,tempora2 , tempora3, tempora4, tempora5;
 
@@ -82,13 +85,14 @@ public class Actualiza extends Service {
 
             locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-            locListener = new LocationListener() { public void onLocationChanged(Location location) {
+            locListener = new LocationListener() {
+
+                public void onLocationChanged(Location location) {
                     Nuevo = new Punto("1", 1, Redondear(location.getLatitude()), Redondear(location.getLongitude()));
                     latitude = String.valueOf(Nuevo.getLatitud());
                     longuitude = String.valueOf(Nuevo.getLonguitud());
                 // actualizamos estas coordenadas en las sharedpreferences
                 }
-
                 public void onProviderDisabled(String provider) {
                 }
 
@@ -99,14 +103,14 @@ public class Actualiza extends Service {
                 }
             };
 
-            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locListener);
+            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 200, 0, locListener);
 
             tempora1 = new Timer();
             tempora1.scheduleAtFixedRate(RutinaRegistrosEnLocal1, 7001, tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaActualizacionEnLocal),140003));
             tempora2 = new Timer();
-            tempora2.scheduleAtFixedRate(RutinaSubidaANube, 15712, tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaSubirDatosANube),600000));
+            tempora2.scheduleAtFixedRate(RutinaSubidaANube, 8712, tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaSubirDatosANube),600000));
             tempora3 = new Timer();
-            tempora3.scheduleAtFixedRate(RutinaNotificaciones, 16023, tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaScaneo),900));
+            tempora3.scheduleAtFixedRate(RutinaNotificaciones, 9023, tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaScaneo),900));
             tempora4 = new Timer();
             tempora4.scheduleAtFixedRate(RutinaGuardiaEnReposo, 75423, tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaGuardia),3600000));
             tempora5 = new Timer();
@@ -489,8 +493,7 @@ return cadena;
     TimerTask RutinaRegistrosEnLocal1 = new TimerTask() {
         @Override
         public void run() {
-            //// Filtro para permitir la actualizacion,,,, que la lectura sea correcta y no este a menos de 12 metros de la ultima actualizacion
-
+                //// Filtro para permitir la actualizacion,,,, que la lectura sea correcta y no este a menos de 12 metros de la ultima actualizacion
             if (!latitude.equals("12") && !EnReposo()) {
                 GuardaEnLocal capote = new GuardaEnLocal();
                 capote.execute(tuyas.getString(getResources().getString(R.string.PropiedadTracker),""), String.valueOf(Nuevo.getLatitud()), String.valueOf(Nuevo.getLonguitud()));
@@ -504,6 +507,7 @@ return cadena;
                             ActualizameYa = 0;
                         } else {
                             ActualizaEnLocal yambae = new ActualizaEnLocal();
+
                             yambae.execute(tuyas.getString(getResources().getString(R.string.PropiedadTracker),""));
                         }
                         ActualizameYa = 0;
@@ -541,8 +545,7 @@ return cadena;
         public void run() {        // En la proximidad a los hitos,,, se aumentara la frecuencia de lecturas.
             if (HaCambiadoNuevoDesdeOnCreate()) {
 
-
-                if (EsProximoAHitos()) {
+                if (EnReposo()) if (EsProximoAHitos()) {
                     GuardaEnLocal capote = new GuardaEnLocal();
                     capote.execute(tuyas.getString(getResources().getString(R.string.PropiedadTracker), ""), String.valueOf(Nuevo.getLatitud()), String.valueOf(Nuevo.getLonguitud()));
                 }
@@ -595,6 +598,15 @@ return cadena;
                     emil.apply();
                 }
             }
+                /// Primero chequeamos si el vehiculo ha esta parado por mas de diez minutos,,,,
+
+                    SharedPreferences.Editor emil = tuyas.edit();
+                    if (EnReposoMasDeDiezMinutos()) {
+                             emil.putBoolean(getResources().getString(R.string.PropiedadEstaEnReposo), true);
+                        }else{
+                            emil.putBoolean(getResources().getString(R.string.PropiedadEstaEnReposo), false);}
+                    emil.apply();
+
         }
     };
     TimerTask RutinaGuardiaEnReposo = new TimerTask() {
@@ -630,6 +642,10 @@ return cadena;
     public boolean EnReposo(){
        return Nuevo.DistanciaLineal(Anterior) < distanciaminima;
     }
+    public boolean EnReposoMasDeDiezMinutos(){
+        if(!EnReposo()){TiempoReposo= System.currentTimeMillis();}
+        return System.currentTimeMillis()-TiempoReposo >100000;
+    }
     public boolean HaCambiadoNuevoDesdeOnCreate(){
 
 
@@ -656,4 +672,6 @@ return cadena;
         // Punto pelota = new Punto ("0",1,-17.847509,-63.111670);
         ListadoRelojes.add(Reloj1);  ListadoRelojes.add(Reloj2);  ListadoRelojes.add(Reloj8);  ListadoRelojes.add(Reloj4);  ListadoRelojes.add(Reloj5);  ListadoRelojes.add(Reloj6);  ListadoRelojes.add(Reloj7);  ListadoRelojes.add(Reloj10);  ListadoRelojes.add(Reloj9);  ListadoRelojes.add(Reloj3);
     }
+
+
 }

@@ -206,6 +206,8 @@ public class Iniciata extends AppCompatActivity implements View.OnClickListener{
                  // Estas shared preferences son para la identificacion de mensajes llegados via FCM
                 editorial.putString(getResources().getString(R.string.PropiedadColorin),"Nada");
 
+                editorial.putBoolean(getResources().getString(R.string.PropiedadEstaEnReposo),false);
+                // Estas shared preferences son para la identificacion de mensajes llegados via FCM
 
 
                 editorial.apply();

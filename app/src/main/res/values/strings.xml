@@ -62,7 +62,7 @@
     <string name="PropiedadFrecuenciaScaneo">FrecuenciaScaneo</string>
     <string name="PropiedadFrecuenciaRecibirOrdenes">FrecuenciaRecibirOrdenes</string>
     <string name="PropiedadFrecuenciaGuardia">FrecuenciaGuardia</string>
-
+    <string name="PropiedadEstaEnReposo">EstaEnReposo</string>
 
     <string name="titulin">Petra</string>
 </resources>

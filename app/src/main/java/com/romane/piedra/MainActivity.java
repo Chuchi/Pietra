@@ -4,11 +4,14 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -20,9 +23,17 @@ public class MainActivity extends AppCompatActivity  {
     // Cambiar por verdaderas coordenadas
     Double LatitudHito1 = -17.847509;
     Double LonguitudHito1 =-63.111670;
+    RelativeLayout RL100;
    EditText Eto;
     TextView TV1,TV2,TV3,TV4,TV5,TV6,TV10;
+    TextClock CLOCK10;
     String info;
+    Boolean pepsi=true;
+    int BanderinRepos1=0;
+    int BanderinRepos2=0;
+
+    private PowerManager mPowerManager;
+    private PowerManager.WakeLock mWakeLock;
     SharedPreferences tuyas;
     Timer temporero = new Timer();
     TimerTask rutina = new TimerTask() {
@@ -36,37 +47,54 @@ public class MainActivity extends AppCompatActivity  {
                 @Override
                 public void run() {
                     Eto.setText(String.valueOf(info));
-                    TV1.setText(tuyas.getString(getResources().getString(R.string.PropiedadREFRESH),""));
-                    TV2.setText(tuyas.getString(getResources().getString(R.string.PropiedadNombreUbicacion1),""));
                  //   TV3.setText(tuyas.getString(getResources().getString(R.string.PropiedadLatitudHito1),""));
                     TV4.setText(tuyas.getString(getResources().getString(R.string.PropiedadLonguitudHito2),""));
 
-                    if(EstaFuncionando(Actualiza.class)){
-                            TV1.setBackgroundColor(Color.YELLOW);
-                        }else{
-                            TV1.setBackgroundColor(Color.RED);
+                    if(EstaFuncionando(Actualiza.class)) {
+                        if ((tuyas.getBoolean(getResources().getString(R.string.PropiedadEstaEnReposo), false)) && BanderinRepos1 == 0) {
+                                RL100.setKeepScreenOn(false);
+                                BanderinRepos1 = 1;
+                                BanderinRepos2 = 0;
+                             }
+                        if ((!tuyas.getBoolean(getResources().getString(R.string.PropiedadEstaEnReposo), false)) && BanderinRepos2 == 0) {
+                              mWakeLock.acquire(20000);
+                              RL100.setKeepScreenOn(true);
+                              BanderinRepos2 = 1;
+                              BanderinRepos1 = 0;
+                            }
 
-                    }
+                       if(BanderinRepos1==1){ CLOCK10.setTextColor(getResources().getColor(R.color.Ciano));}
+                       if(BanderinRepos2==1){ CLOCK10.setTextColor(getResources().getColor(R.color.Verde));}
 
-                    TV6.setText(tuyas.getString("prova",""));
+                    } else {
+                            CLOCK10.setTextColor(getResources().getColor(R.color.RojoClaro));
+                            RL100.setKeepScreenOn(true);
+                        }
 
-                    ///PRUEBA - Cambia el texto dependiendo del mensaje recibido
+                        TV6.setText(tuyas.getString("prova", ""));
 
-                    TV3.setText("F. Local " + tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaActualizacionEnLocal),5000));
-                    TV4.setText("F. ANube " + tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaSubirDatosANube),5000));
-                    TV5.setText("F. ANube " + tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaScaneo),900));
-                    TV10.setText(tuyas.getString(getResources().getString(R.string.PropiedadURL),"ll"));
+                        ///PRUEBA - Cambia el texto dependiendo del mensaje recibido
 
-
+                        TV3.setText("F. Local " + tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaActualizacionEnLocal), 5000));
+                        TV4.setText("F. ANube " + tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaSubirDatosANube), 5000));
+                        TV5.setText("F. ANube " + tuyas.getInt(getResources().getString(R.string.PropiedadFrecuenciaScaneo), 900));
+                        TV10.setText(tuyas.getString(getResources().getString(R.string.PropiedadURL), "ll"));
                 }
-                });
+            });
 
            carion.cerrar();
         }
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        mWakeLock = mPowerManager.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK| PowerManager.ACQUIRE_CAUSES_WAKEUP, "Service");
+
+
+
         super.onCreate(savedInstanceState);
+
 
         tuyas= PreferenceManager.getDefaultSharedPreferences(this);
         if (tuyas.getString(getResources().getString(R.string.PropiedadTracker), "1").equals("1")) {
@@ -84,18 +112,19 @@ public class MainActivity extends AppCompatActivity  {
             startActivity(Area);
         }else {
             setContentView(R.layout.activity_main);
+            RL100 = (RelativeLayout) findViewById(R.id.RL100);
             Eto = (EditText) findViewById(R.id.Eto);
             TV1 = (TextView)findViewById(R.id.TV1);
-            TV2 = (TextView)findViewById(R.id.TV2);
             TV3 = (TextView)findViewById(R.id.TV3);
             TV4 = (TextView)findViewById(R.id.TV4);
             TV5 = (TextView)findViewById(R.id.TV5);
             TV6 = (TextView)findViewById(R.id.TV6);
             TV10 = (TextView)findViewById(R.id.TV10);
+            CLOCK10=(TextClock)findViewById(R.id.CLOCK10);
 
           //  Chismoso pepon = new Chismoso();
 
-            temporero.scheduleAtFixedRate(rutina, 2000, 500); // Temporizador para periodo de pruebas
+            temporero.scheduleAtFixedRate(rutina, 2000, 1000); // Temporizador para periodo de pruebas
 
         // Se inicializa el AlarmManager enviando una alarma cada 60 segundos para que se revise el estado de la aplicacion Actualiza.
         }
@@ -122,4 +151,8 @@ public class MainActivity extends AppCompatActivity  {
         }
 
     }
+
+
+
+
 }
