@@ -16,48 +16,34 @@
                 tools:context="com.romane.piedra.MainActivity">
 
 
-    <EditText
-        android:id="@+id/Eto"
+    <TextView
+        android:id="@+id/TV10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/CLOCK10"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/TV11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_below="@id/TV10"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
         android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/TV1"
+        android:id="@+id/TV12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/TV3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/TV4"
-        android:text="New Text"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/TV4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/TV10"
-        android:text="New Text"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/TV5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TV6"
-        android:text="New Text"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_marginEnd="35dp"
         android:textColor="@android:color/white"
         android:textSize="20sp"/>
 
@@ -68,37 +54,20 @@
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical|center_horizontal"
+
+        android:format24Hour="h:mm"
         android:text="12:36"
-
         android:textColor="@android:color/holo_blue_bright"
-        android:textSize="120sp"/>
-
-    <TextView
-        android:id="@+id/TV6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TV10"
-        android:text="New Text"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/TV10"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/CLOCK10"
-        android:layout_marginTop="20dp"
-        android:text="Primor"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"/>
+        android:textSize="170sp"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/IMV10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/TV4"
-        android:layout_centerVertical="true"
-        app:srcCompat="@drawable/ciano"/>
+        android:layout_alignParentStart="false"
+        android:layout_centerVertical="false"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/amarelo"/>
 
 
 </RelativeLayout>

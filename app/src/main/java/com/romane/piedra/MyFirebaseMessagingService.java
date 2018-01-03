@@ -107,7 +107,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 // Desencadena el envio inmediato de la ubicacion
                 edito.putString(getResources().getString(R.string.PropiedadREFRESH),"Metale");
-                EnviaNotificacion(mensajito);
+                ///EnviaNotificacion(mensajito);
                 edito.apply();
 
             }

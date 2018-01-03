@@ -14,7 +14,6 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.widget.Toast;
 
 import org.ksoap2.SoapEnvelope;
@@ -595,6 +594,7 @@ return cadena;
                     cemelo.execute(tuyas.getString(getResources().getString(R.string.PropiedadTracker), ""), latitude, longuitude);
                     SharedPreferences.Editor emil = tuyas.edit();
                     emil.putString(getResources().getString(R.string.PropiedadREFRESH), "EnEspera");
+                    emil.putString(getResources().getString(R.string.PropiedadPasarIU), "1");
                     emil.apply();
                 }
             }

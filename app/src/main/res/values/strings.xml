@@ -45,6 +45,7 @@
     <string name="PropiedadLatitudReloj10">LatitudReloj10</string>
     <string name="PropiedadLonguitudReloj10">LonguitudReloj10</string>
     <string name="PropiedadREFRESH">REFRESH</string>
+    <string name="PropiedadPasarIU">PasarIU</string>
     <string name="PropiedadTiempoDescansoDeNotificacionesHito1">TiemposDescansoDeNotificacionesHito1</string>
     <string name="PropiedadTiempoDescansoDeNotificacionesHito2">TiemposDescansoDeNotificacionesHito2</string>
     <string name="PropiedadTiempoDescansoDeNotificacionesHito3">TiemposDescansoDeNotificacionesHito3</string>
